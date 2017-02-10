@@ -14,15 +14,19 @@ body{
 	border-radius: 15px;
 }
 
-.highlight, .answers span{
+.highlight, .answers{
 	color: #ec983c !important;
+}
+
+.answers span{
+	color: #FFF;
 }
 
 .levels{
 	width: 200px;
 	min-height: 200px;
 	padding: 15px;
-	position: absolute;
+	position: fixed;
 	right: 20px;
 	top: 50px;
 }
@@ -40,8 +44,17 @@ body{
 	font-family: Copperplate Gothic Bold, Copperplate Gothic Light, Copperplate, Balthazar;
 }
 
+.levels span{
+	display: none;
+	font-size: 36px;
+	color: #FFF;
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg); 
+}
+
+
 .question{
-	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
@@ -56,7 +69,6 @@ body{
 }
 
 .answers{
-	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
@@ -69,9 +81,14 @@ body{
 	width: 44%;
 	display: inline-block;
 	float: left;
-	font-size: 24px;
+	font-size: 22px;
 	padding: 8px 10px;
 	margin: 10px;
+}
+
+.disabled{
+	cursor: wait;
+    pointer-events: none;
 }
 
 .answers .options:not(.wrong):not(.correct):hover{
@@ -87,24 +104,87 @@ body{
 
 .correct{
 	background: rgba(8, 213, 32, 1);
+	border: 1px solid #FFF;
+	-webkit-animation: correct 0.5s ease-in-out infinite alternate;
+	-moz-animation: correct 0.5s ease-in-out infinite alternate;
+	animation: correct 0.5s ease-in-out infinite alternate;
 }
 
 .wrong{
-	background: rgb(236, 127, 42)
+	background: rgb(236, 127, 42);
+	border: 1px solid #FFF;
+	-webkit-animation: wrong 0.5s ease-in-out infinite alternate;
+	-moz-animation: wrong 0.5s ease-in-out infinite alternate;
+	animation: wrong 0.5s ease-in-out infinite alternate;
 }
 
 .current{
-	-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-	-moz-animation: neon1 1.5s ease-in-out infinite alternate;
-	animation: neon1 1.5s ease-in-out infinite alternate;
+	-webkit-animation: neon1 0.5s ease-in-out infinite alternate;
+	-moz-animation: neon1 0.5s ease-in-out infinite alternate;
+	animation: neon1 0.5s ease-in-out infinite alternate;
+}
+
+.timer{
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	padding: 15px;
+	position: fixed;
+	left: 20px;
+	top: 50px;
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+	color: #FFF;
+}
+
+.progress-bar{
+	position: fixed;
+	top: 140px;
+	left: 20px;
+	min-width: 82px;
+}
+
+.progress-bar div{
+	height: 2px;
+  	box-sizing: border-box;
+  	background: rgba(255, 255, 255, 0.6);
 }
 
 /*glow for webkit*/
 @-webkit-keyframes neon1 {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  	box-shadow: 0 0 10px #FF1177;
+  	border-radius: 15px;
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  	box-shadow: 0 0 20px #FF1177, 0 0 30px #FF1177;
+  	border-radius: 15px;
+  	background: #FF1177;
+
+  }
+}
+
+@-webkit-keyframes correct {
+  from {
+  	box-shadow: 0 0 5px rgba(8, 213, 32, 1);
+  	border-radius: 15px;
+  }
+  to {
+  	box-shadow: 0 0 10px rgba(8, 213, 32, 1), 0 0 15px rgba(8, 213, 32, 1);
+  	border-radius: 15px;
+
+  }
+}
+
+@-webkit-keyframes wrong {
+  from {
+  	box-shadow: 0 0 5px rgb(236, 127, 42);
+  	border-radius: 15px;
+  }
+  to {
+  	box-shadow: 0 0 10px rgb(236, 127, 42), 0 0 15px rgb(236, 127, 42);
+  	border-radius: 15px;
+
   }
 }
