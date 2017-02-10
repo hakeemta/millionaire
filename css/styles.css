@@ -23,7 +23,7 @@ body{
 }
 
 .levels{
-	width: 200px;
+	width: 220px;
 	min-height: 200px;
 	padding: 15px;
 	position: fixed;
@@ -38,8 +38,9 @@ body{
 
 .levels ul li{
 	color: #FFF;
+	margin: 5px 0px;
 	list-style: none;
-	font-size: 32px;
+	font-size: 28px;
 	font-weight: bold;
 	font-family: Copperplate Gothic Bold, Copperplate Gothic Light, Copperplate, Balthazar;
 }
@@ -59,7 +60,7 @@ body{
 	margin-right: auto;
 	margin-top: 20px;
 	padding: 0px 10px;
-	width: 60%;
+	width: 58%;
 }
 
 .question p{
@@ -73,7 +74,7 @@ body{
 	margin-right: auto;
 	margin-top: 20px;
 	padding: 0px 10px;
-	width: 60%;
+	width: 58%;
 	color: #FFF;
 }
 
@@ -187,4 +188,37 @@ body{
   	border-radius: 15px;
 
   }
+}
+
+.lifeline{
+	border-radius: 50%;
+	width: 50px;
+	padding: 15px;
+	position: fixed;
+	top: 150px;
+}
+
+#fifty {
+	background: url('../img/50-50.png') no-repeat 0 0;
+}
+
+#phone-friend {
+	background: url('../img/phone-friend.png') no-repeat 0 0;
+}
+
+#audience {
+	background: url('../img/audience.png') no-repeat 0 0;
+}
+
+.options-button {
+	width: 64px;
+	height: 64px;
+	margin: 10px;
+	float: left;
+	background-position: 0 0;
+	cursor: pointer;
+}
+
+.options-button:hover {
+	background-position: 0 -64px !important;
 }

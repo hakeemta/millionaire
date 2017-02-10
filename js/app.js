@@ -2,6 +2,7 @@
 var questions = [];
 var answer = '';
 var level = 0;
+var interval;
 
 // Executes on page load
 $(document).ready(function() {
@@ -16,6 +17,7 @@ $(document).ready(function() {
 		// console.log(chosen==answer ? 'True' : 'False');
 
 		//if correct answer
+		$('.options').addClass('disabled');
 		if($this.find('span').html() == answer){
 			$this.fadeToggle().fadeToggle().addClass('disabled correct');
 			level++
@@ -36,29 +38,48 @@ $(document).ready(function() {
 			gameOver();
 		}
 	});
+
+	$('.levels span').click(function(){
+		location.reload();
+	});
+
+	$('#fifty').click(function() {
+		var second_opt = false;
+
+		$(this).addClass('disabled');
+		$('.options span').fadeOut();
+
+		$('.options').each(function(){
+			$this = $(this);
+
+			if($this.find('span').html() == answer){
+				$this.find('span').fadeToggle();
+			}
+			else if(!second_opt || Math.floor(Math.random()*1)){
+				$this.find('span').fadeToggle();
+				second_opt = true;
+			}
+		});
+	});
 });
 
-// function countDown(timeleft, timetotal, $element) {
-//     var progressBarWidth = timeleft * $element.width() / timetotal;
-//     $element.find('div').animate({ width: progressBarWidth }, 500)
-//     // .html(timeleft + " seconds to go");
-//     $('.timer').text(timeleft);
-//     if(timeleft > 0) {
-//         setTimeout(function() {
-//             countDown(timeleft - 1, timetotal, $element);
-//         }, 1000);
-//     }
-// };
 
 function countDown(time, $element) {
-	clearInterval();
+	if(time < 0){
+		return;
+	}
+
+	clearInterval(interval);
 	var elapse = 0;
 
-    setInterval(function() {
-        var progressBarWidth = (time-elapse++) * $element.width() / timetotal;
+    interval = setInterval(function() {
+        var progressBarWidth = (time-elapse) * $element.width() / time;
         $element.find('div').animate({ width: progressBarWidth }, 500)
-        // .html(timeleft + " seconds to go");
-        $('.timer').text(timeleft);
+        $('.timer').text(time-elapse);
+        if (++elapse > time) {
+        	clearInterval(interval);
+        	gameOver();
+        }
     }, 1000);
 };
 
@@ -76,10 +97,17 @@ function win(){
 }
 
 function gameOver(){
+	var take_home = 0;
+	$('.options').addClass('disabled');
+
+	if(level > 5){
+		take_home = 1000;
+	}
+
 	$('.levels ul').hide();
-	$('.levels span').show().text('Game Over!!!');
+	$('.levels span').show().html('Game Over!!! <br> Take Home: GP ' + take_home + '<br>Start Again');
 	setTimeout(function() {
-		location.reload();
+		// location.reload();
 	}, 2000);
 };
 
@@ -89,7 +117,13 @@ function nextQuestion(set){
 
 		$('.question p').html(set.question);
 
+		//Get image
+		// $.getJSON("https://en.wikipedia.org/w/api.php?action=query&titles=Abacus&prop=pageimages&format=jsonp&pithumbsize=100", function(data) {
+		// 	console.log(data.thumbnail.source)
+		// });
+
 		$('.options').removeClass('correct wrong disabled');
+		$('.options span').fadeIn();
 
 		answer = set.correct_answer;
 
@@ -104,9 +138,6 @@ function nextQuestion(set){
 		$('.option-d span').html(choices[3]);
 
 		countDown(30, $('.progress-bar'));
-		setTimeout(function() {
-			gameOver();
-		}, 30000);
 	}
 	else{
 		win();
