@@ -1,0 +1,110 @@
+body{
+	background: #011520;
+}
+
+.logo img{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.trans, .options{
+	background: rgba(23, 34, 56, 0.7);
+	border: 1px solid #6568aa;
+	border-radius: 15px;
+}
+
+.highlight, .answers span{
+	color: #ec983c !important;
+}
+
+.levels{
+	width: 200px;
+	min-height: 200px;
+	padding: 15px;
+	position: absolute;
+	right: 20px;
+	top: 50px;
+}
+
+.levels ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+.levels ul li{
+	color: #FFF;
+	list-style: none;
+	font-size: 32px;
+	font-weight: bold;
+	font-family: Copperplate Gothic Bold, Copperplate Gothic Light, Copperplate, Balthazar;
+}
+
+.question{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	padding: 0px 10px;
+	width: 60%;
+}
+
+.question p{
+	color: #FFF;
+	font-size: 24px;
+	text-align: center;
+}
+
+.answers{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	padding: 0px 10px;
+	width: 60%;
+	color: #FFF;
+}
+
+.answers .options{
+	width: 44%;
+	display: inline-block;
+	float: left;
+	font-size: 24px;
+	padding: 8px 10px;
+	margin: 10px;
+}
+
+.answers .options:not(.wrong):not(.correct):hover{
+	background: rgba(180, 180, 180, 0.7);
+	animation: bounce 1s;
+	-webkit-animation: bounce 1s;
+}
+
+@keyframes bounce {
+   0%, 100% {transform: translateY(0);} 
+   50% {transform: translateY(-5px);}
+}
+
+.correct{
+	background: rgba(8, 213, 32, 1);
+}
+
+.wrong{
+	background: rgb(236, 127, 42)
+}
+
+.current{
+	-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+	-moz-animation: neon1 1.5s ease-in-out infinite alternate;
+	animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+/*glow for webkit*/
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
