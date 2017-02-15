@@ -23,12 +23,12 @@ body{
 }
 
 .levels{
-	width: 220px;
+	width: 200px;
 	min-height: 200px;
 	padding: 15px;
 	position: fixed;
 	right: 20px;
-	top: 50px;
+	top: 30px;
 }
 
 .levels ul{
@@ -38,22 +38,36 @@ body{
 
 .levels ul li{
 	color: #FFF;
-	margin: 5px 0px;
+	margin: 0px;
 	list-style: none;
-	font-size: 28px;
+	font-size: 32px;
 	font-weight: bold;
 	font-family: Copperplate Gothic Bold, Copperplate Gothic Light, Copperplate, Balthazar;
 }
 
-.levels span{
-	display: none;
-	font-size: 36px;
-	color: #FFF;
-	-ms-transform: rotate(-90deg);
-	-webkit-transform: rotate(-90deg);
-	transform: rotate(-90deg); 
+.levels ul li::before{
+	content: "GP ";
 }
 
+.levels span{
+	display: none;
+	font-size: 28px;
+	color: #FFF;
+	text-align: center;
+	/*-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);*/ 
+}
+
+.levels span i {
+	margin-top: 10px;
+	cursor: pointer;
+	/*color: #F00;*/
+
+	-webkit-animation: text_glow 0.5s ease-in-out infinite alternate;
+	-moz-animation: text_glow 0.5s ease-in-out infinite alternate;
+	animation: text_glow 0.5s ease-in-out infinite alternate;
+}
 
 .question{
 	margin-left: auto;
@@ -166,6 +180,17 @@ body{
   }
 }
 
+@-webkit-keyframes text_glow {
+  from {
+  	text-shadow: : 0 0 10px #F00;
+  	color: #F00;
+  }
+  to {
+  	text-shadow: 0 0 20px #F00, 0 0 30px #F00;
+  	color: #FFF;
+  }
+}
+
 @-webkit-keyframes correct {
   from {
   	box-shadow: 0 0 5px rgba(8, 213, 32, 1);
@@ -202,12 +227,45 @@ body{
 	background: url('../img/50-50.png') no-repeat 0 0;
 }
 
-#phone-friend {
-	background: url('../img/phone-friend.png') no-repeat 0 0;
+#walk-away {
+	background: url('../img/walk-away.png') no-repeat 0 0;
+	height: 96px;
+}
+
+#walk-away:hover{
+	background-position: 0 !important;
 }
 
 #audience {
 	background: url('../img/audience.png') no-repeat 0 0;
+	position: relative;
+}
+
+.audience{
+	display: none;
+	position: relative;
+	top: 40px;
+	left: 100px;
+	min-height: 120px;
+	width: 105px;
+}
+
+.audience ul{
+	padding: 5px;
+	position: absolute;
+	bottom: 5px;
+	margin: 0px;
+}
+
+.audience ul li{
+	display: inline-block;
+	min-width: 20px;
+	min-height: 20px;
+	box-sizing: border-box;
+  	background: rgba(255, 255, 255, 0.6);
+  	margin: 0px;
+  	vertical-align: bottom;
+  	text-align: center;
 }
 
 .options-button {
